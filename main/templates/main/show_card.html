@@ -1,0 +1,21 @@
+{% extends 'main/main.html' %}
+{% block content %}
+<h1 align="center">Карта</h1>
+<p><b>Серия: </b>{{card.series}}</p>
+<p><b>Номер: </b>{{card.amount}}</p>
+<p><b>Дата окончания активности: </b>{{card.end_date}}</p>
+<p><b>Статус: </b>{{card.is_active}} <button><a href="{% url 'change_status' card.pk %}">Изменить</a></button> </p>
+
+<button><a href="{% url 'delete_card' card.pk %}">Удалить карту</a></button>
+
+<h1 align="center">Покупки по карте</h1>
+{% if items %}
+    {% for item in items %}
+        <p><b>Название товара: </b>{{item.name}}</p>
+        <p><b>Цена товара: </b>{{item.price}}</p>
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>Список покупок пуст...</p>
+{% endif %}
+{% endblock %}
